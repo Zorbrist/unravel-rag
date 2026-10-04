@@ -20,7 +20,7 @@ async def upload_file(file: UploadFile):
     compressed_file = file.file.tell()
     file.file.seek(0)
     
-    if not compressed_file > MAX_FILE_SIZE:
+    if compressed_file > MAX_FILE_SIZE:
         raise HTTPException(status_code=400, detail="Zip file too big")
     
     if not zipfile.is_zipfile(file.file):
@@ -43,9 +43,9 @@ async def upload_file(file: UploadFile):
                total_compressed_size += member.file_size
                if total_compressed_size > MAX_UNCOMPRESSED_SIZE:
                    raise HTTPException(status_code=400, detail="Uncompressed size is too large")
-               
-               os.makedirs(UPLOADED_FILE_DIRECTORY, exist_ok=True)
-               zip_ref.extractall(UPLOADED_FILE_DIRECTORY)
+                 
+           os.makedirs(UPLOADED_FILE_DIRECTORY, exist_ok=True)
+           zip_ref.extractall(UPLOADED_FILE_DIRECTORY)
                
     except zipfile.BadZipFile:
         raise HTTPException(status_code=400, detail="Corrupted archive")
