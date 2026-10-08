@@ -83,5 +83,5 @@ if __name__ == "__main__":
     import sys
 
     for c in chunk_file(sys.argv[1]):
-        print(f"--- {c.file_path}:{c.start_line}-{c.end_line}")
+        print(f"\n========= {c.file_path}:{c.start_line}-{c.end_line} ==========")
         print(c.content)
