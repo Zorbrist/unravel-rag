@@ -7,8 +7,8 @@
 //   - A small function_declaration and small class_declaration stay whole.
 //   - Exported function and exported class (export_statement) stay whole.
 
-// import { readFileSync } from "fs";
-// import * as path from "path";
+import { readFileSync } from "fs";
+import * as path from "path";
 
 const DEFAULT_ROLE = "viewer";
 
